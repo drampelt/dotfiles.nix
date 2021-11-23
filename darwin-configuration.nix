@@ -50,6 +50,8 @@
   home-manager.users.daniel = { pkgs, ... }: {
     home.packages = [ pkgs.xh ];
 
+    home.file.".ideavimrc".source = ./ideavimrc;
+
     programs.git = {
       enable = true;
       userEmail = "drampelt@gmail.com";

@@ -47,7 +47,7 @@
 
   home-manager.users.daniel = { pkgs, ... }: {
     home.packages = with pkgs; [
-      fd fasd htop ncdu scrcpy ripgrep wget xh
+      fd fasd htop ncdu ripgrep wget xh
     ];
 
     home.file.".ideavimrc".source = ./ideavimrc;
@@ -246,6 +246,8 @@
       initExtra = ''
       eval "$(fasd --init auto)"
       test -e "''${HOME}/.iterm2_shell_integration.zsh" && source "''${HOME}/.iterm2_shell_integration.zsh"
+      export ANDROID_HOME="''${HOME}/Library/Android/sdk"
+      export PATH="''${ANDROID_HOME}/tools:''${ANDROID_HOME}/platform-tools:''${PATH}"
       '';
       shellAliases = {
         gdm = "git branch --merged | egrep -v '(^\\*|master|staging|main)' | xargs git branch -d";

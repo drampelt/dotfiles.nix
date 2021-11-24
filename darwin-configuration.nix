@@ -251,6 +251,7 @@
       test -e "''${HOME}/.iterm2_shell_integration.zsh" && source "''${HOME}/.iterm2_shell_integration.zsh"
       export ANDROID_HOME="''${HOME}/Library/Android/sdk"
       export PATH="''${ANDROID_HOME}/tools:''${ANDROID_HOME}/platform-tools:''${PATH}"
+      setopt prompt_sp
       '';
       shellAliases = {
         gdm = "git branch --merged | egrep -v '(^\\*|master|staging|main)' | xargs git branch -d";

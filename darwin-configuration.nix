@@ -245,6 +245,7 @@
       export PATH="''${ANDROID_HOME}/tools:''${ANDROID_HOME}/platform-tools:''${PATH}"
       setopt prompt_sp
       export EDITOR=vim
+      export BAT_PAGER="less -R"
       '';
       shellAliases = {
         gdm = "git branch --merged | egrep -v '(^\\*|master|staging|main)' | xargs git branch -d";

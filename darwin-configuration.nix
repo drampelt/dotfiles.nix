@@ -5,9 +5,7 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [ pkgs.vim pkgs.lorri pkgs.ncdu pkgs.delta pkgs.git
-    ];
+  environment.systemPackages = [ pkgs.lorri ];
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
@@ -48,9 +46,39 @@
   };
 
   home-manager.users.daniel = { pkgs, ... }: {
-    home.packages = [ pkgs.xh ];
+    home.packages = with pkgs; [
+      fd fasd htop ncdu scrcpy ripgrep wget xh
+    ];
 
     home.file.".ideavimrc".source = ./ideavimrc;
+
+    programs.bat.enable = true;
+
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    programs.exa = {
+      enable = true;
+      enableAliases = true;
+    };
+
+    programs.fzf = {
+      enable = true;
+      defaultCommand = "fd .";
+      fileWidgetOptions = [
+        "--preview-window" "wrap"
+        "--preview" "'
+        if [[ -f {} ]]; then
+             file --mime {} | grep -q \\\"text\/.*;\\\" && bat --color \\\"always\\\" {} || (tput setaf 1; file --mime {})
+         elif [[ -d {} ]]; then
+             exa -l --color always {}
+         else;
+             tput setaf 1; echo YOU ARE NOT SUPPOSED TO SEE THIS!
+         fi'"
+      ];
+    };
 
     programs.git = {
       enable = true;
@@ -74,6 +102,161 @@
         init = {
           defaultBranch = "main";
         };
+      };
+    };
+
+    programs.htop.enable = true;
+
+    programs.jq.enable = true;
+
+    programs.starship.enable = true;
+
+    programs.vim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [
+        vim-sensible nord-vim fzf-vim nerdtree vim-nerdtree-tabs vim-airline tcomment_vim vim-gitgutter vim-fugitive vim-surround vim-polyglot vim-nix
+      ];
+      extraConfig = ''
+      let g:mapleader=","
+
+      " Colorscheme
+      colorscheme nord
+      syntax enable
+
+      " Tabs
+      set tabstop=4
+      set softtabstop=4
+      set expandtab
+      set shiftwidth=4
+      set autoindent
+
+      autocmd Filetype coffee setlocal tabstop=2 shiftwidth=2 softtabstop=2
+      autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+      " Display
+      set number
+      set showcmd
+      set cursorline
+      set wildmenu
+      set lazyredraw
+      set showmatch
+      set mouse=a
+
+      " Searching
+      set incsearch
+      set hlsearch
+
+      " Folding
+      set foldenable
+      set foldlevelstart=10
+      set foldnestmax=10
+      set foldmethod=indent
+
+      " Escape
+      inoremap jj <esc>
+
+      """ Colemak-Vim Mappings"""
+      " - k/K is the new n/N.
+      " - s/S is the new i/I ["inSert"].
+      "
+      " - l/L skip to the beginning and end of lines
+      " - Ctrl-l joins lines
+      " - r replaces i as the "inneR" modifier
+
+      " HNEI arrows. Swap 'gn'/'ge' and 'n'/'e'.
+
+      noremap <expr> n (v:count == 0 ? 'gj' : 'j')
+      noremap <expr> e (v:count == 0 ? 'gk' : 'k')
+      noremap i l
+
+      noremap <C-e> <C-u>
+      noremap <C-n> <C-d>
+
+      " Switch panes.
+      nnoremap H <C-w>h
+      nnoremap I <C-w>l
+      nnoremap N <C-w>j
+      nnoremap E <C-w>k
+
+      " Switch buffers.
+      nnoremap <C-i> :tabnext<CR>
+      nnoremap <C-h> :tabprevious<CR>
+
+      " Last search.
+      noremap k n
+      noremap K N
+
+      " _r_ = inneR text objects.
+      onoremap r i
+
+      " Easy mappings for BOL EOL
+      noremap l g^
+      noremap L g$
+
+      """Misc Mappings"""
+      noremap ; :
+      noremap : ;
+      noremap U <C-r>
+      nnoremap <CR> o<Esc>
+      nnoremap <silent> j :noh<CR>
+      noremap <silent> _ :TComment<CR>
+      nnoremap p p=`]
+      noremap s i
+      noremap S I
+      noremap <space> i
+      inoremap <C-e> <C-p>
+      inoremap <C-p> <C-r>
+
+      " NERDTree
+      " nnoremap <silent> <Leader><Leader> :NERDTreeToggle<CR>
+      nnoremap <silent> <Leader><Leader> :NERDTreeTabsToggle<CR>
+      let g:NERDTreeMenuDown='n'
+      let g:NERDTreeMenuUp='e'
+      let g:NERDTreeMapToggleHidden='H'
+      let g:NERDTreeChDirMode = 2              " Vim's cwd follows NERDTree's cwd.
+      let g:NERDTreeMapJumpFirstChild = "ge"
+      let g:NERDTreeMapJumpLastChild = "gn"
+      let g:NERDTreeMapOpenExpl = ""
+      let g:NERDTreeMapOpenSplit = "S"
+      let g:NERDTreeQuitOnOpen = 0             " Stay open.
+
+      " Airline
+      let g:airline_powerline_fonts = 1
+      let g:airline#extensions#tabline#enabled = 1
+
+      " FZF
+      noremap <silent> <C-p> :Files<CR>
+
+      " Clipboard
+      set clipboard=unnamed
+
+      " Nerdtree
+      let g:nerdtree_tabs_open_on_gui_startup = 0
+      '';
+    };
+
+    programs.zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" ];
+      };
+      initExtra = ''
+      eval "$(fasd --init auto)"
+      test -e "''${HOME}/.iterm2_shell_integration.zsh" && source "''${HOME}/.iterm2_shell_integration.zsh"
+      '';
+      shellAliases = {
+        gdm = "git branch --merged | egrep -v '(^\\*|master|staging|main)' | xargs git branch -d";
+        k = "kubectl";
+        ks = "kubectl --namespace staging";
+        ksys = "kubectl --namespace kube-system";
+        kp = "kubectl --namespace production";
+        km = "kubectl --namespace monitoring";
+        ki = "kubectl --namespace internal";
+        kn = "kubectl --namespace ingress-nginx";
+        kw = "kubectl --namespace whistler";
       };
     };
   };

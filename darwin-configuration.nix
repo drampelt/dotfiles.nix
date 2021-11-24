@@ -5,7 +5,7 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [ pkgs.lorri ];
+  environment.systemPackages = [ ];
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
@@ -23,22 +23,10 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
-  launchd.user.agents = {
-    "lorri" = {
-      serviceConfig = {
-        WorkingDirectory = (builtins.getEnv "HOME");
-        EnvironmentVariables = { };
-        KeepAlive = true;
-        RunAtLoad = true;
-        StandardOutPath = "/var/tmp/lorri.log";
-        StandardErrorPath = "/var/tmp/lorri.log";
-      };
-      script = ''
-        source ${config.system.build.setEnvironment}
-        exec ${pkgs.lorri}/bin/lorri daemon
-      '';
-    };
-  };
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
 
   users.users.daniel = {
     name = "daniel";
@@ -57,6 +45,7 @@
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
 
     programs.exa = {

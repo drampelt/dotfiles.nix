@@ -105,6 +105,9 @@
         core = {
           sshCommand = "/usr/bin/ssh";
         };
+        merge = {
+          tool = "opendiff";
+        };
       };
     };
 

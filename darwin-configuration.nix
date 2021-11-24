@@ -80,7 +80,7 @@
         features = "side-by-side line-numbers decorations";
         whitespace-error-style = "22 reverse";
       };
-      ignores = [ "*.swp" ".DS_Store" ];
+      ignores = [ "*.swp" ".DS_Store" ".direnv" ];
       extraConfig = {
         alias = {
           lg = "log --graph --date=format:\"%a %b %d, %r\" --pretty=format:\"%Cred%h%Creset - %C(yellow)%ad %Cgreen(%cr)%C(reset)%C(auto) -%d %s %Cblue<%an>%Creset\" --topo-order";

@@ -35,7 +35,10 @@
     home = "/Users/daniel";
   };
 
-  home-manager.users.daniel = { pkgs, ... }: {
+  home-manager.users.daniel = { pkgs, ... }: 
+  let starshipWorkingPkgs = import (fetchTarball ("https://github.com/NixOS/nixpkgs/archive/06ff90f540d0dcf77a5aa34fb1ad323da8c1f8f7.tar.gz")) {};
+  in
+  {
     home.packages = with pkgs; [
       fd fasd htop ncdu ripgrep wget xh
     ];
@@ -107,6 +110,7 @@
     programs.jq.enable = true;
 
     programs.starship.enable = true;
+    programs.starship.package = starshipWorkingPkgs.pkgs.starship;
 
     programs.vim = {
       enable = true;

@@ -26,6 +26,8 @@
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
+    experimental-features = nix-command
+    extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
   users.users.daniel = {

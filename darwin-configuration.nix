@@ -40,7 +40,7 @@
   in
   {
     home.packages = with pkgs; [
-      fd fasd htop ncdu ripgrep wget xh
+      difftastic duf fd fasd ffmpeg fx git-crypt htop kopia ncdu ripgrep wget xh yt-dlp
     ];
 
     home.file.".ideavimrc".source = ./ideavimrc;
@@ -80,15 +80,18 @@
       userName = "Daniel Rampelt";
       signing.key = "C7F714686365C406";
       signing.signByDefault = true;
-      delta.enable = true;
-      delta.options = {
-        features = "side-by-side line-numbers decorations";
-        whitespace-error-style = "22 reverse";
-      };
+      # delta.enable = true;
+      # delta.options = {
+      #   features = "side-by-side line-numbers decorations";
+      #   whitespace-error-style = "22 reverse";
+      # };
       ignores = [ "*.swp" ".DS_Store" ".direnv" ];
       extraConfig = {
         alias = {
           lg = "log --graph --date=format:\"%a %b %d, %r\" --pretty=format:\"%Cred%h%Creset - %C(yellow)%ad %Cgreen(%cr)%C(reset)%C(auto) -%d %s %Cblue<%an>%Creset\" --topo-order";
+          dft = "difftool";
+          showtool = "!showci () { rev=$(git rev-parse \"\${*:-HEAD}\"); git difftool $rev~1 $rev; }; showci";
+          shw = "show --ext-diff";
         };
         pull = {
           rebase = true;
@@ -101,6 +104,19 @@
         };
         merge = {
           tool = "opendiff";
+        };
+        diff = {
+          tool = "difftastic";
+          external = "difft";
+        };
+        difftool = {
+          prompt = false;
+        };
+        "difftool \"difftastic\"" = {
+          cmd = "difft \"$LOCAL\" \"$REMOTE\"";
+        };
+        pager = {
+          difftool = true;
         };
       };
     };

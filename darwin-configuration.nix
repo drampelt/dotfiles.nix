@@ -260,6 +260,17 @@
         enable = true;
         plugins = [ "git" ];
       };
+      plugins = [
+        {
+          name = "zsh-autoquoter";
+          src = pkgs.fetchFromGitHub {
+            owner = "ianthehenry";
+            repo = "zsh-autoquoter";
+            rev = "819a615fbfd2ad25c5d311080e3a325696b45de7";
+            sha256 = "15kli851f32cbyisgf7960pmryz5w8ssn4ykpjiyfk05wsixsj5g";
+          };
+        }
+      ];
       initExtra = ''
       eval "$(fasd --init auto)"
       test -e "''${HOME}/.iterm2_shell_integration.zsh" && source "''${HOME}/.iterm2_shell_integration.zsh"
@@ -268,6 +279,8 @@
       setopt prompt_sp
       export EDITOR=vim
       export BAT_PAGER="less -R"
+      ZAQ_PREFIXES=('git commit( [^ ]##)# -[^ -]#m')
+      ZSH_HIGHLIGHT_HIGHLIGHTERS+=(zaq)
       '';
       shellAliases = {
         gdm = "git branch --merged | egrep -v '(^\\*|master|staging|main)' | xargs git branch -d";

@@ -101,4 +101,27 @@
       "zerotier-one"
     ];
   };
+
+  system.defaults = {
+    NSGlobalDomain = {
+      AppleShowAllFiles = true;
+      InitialKeyRepeat = 15;
+      KeyRepeat = 2;
+    };
+
+    dock = {
+      autohide = true;
+      mru-spaces = false;
+      show-recents = false;
+    };
+
+    finder.AppleShowAllFiles = true;
+
+    screencapture.location = "/Users/daniel/Pictures/Screenshots";
+
+    trackpad = {
+      Clicking = true;
+      TrackpadRightClick = true;
+    };
+  };
 }

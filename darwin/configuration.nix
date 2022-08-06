@@ -41,6 +41,8 @@
   #};
   programs.nix-index.enable = true;
 
+  environment.shells = [pkgs.zsh];
+
   # Fonts
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
@@ -55,4 +57,48 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
 
+  homebrew = {
+    enable = true;
+    autoUpdate = true;
+    cleanup = "zap";
+    global.brewfile = true;
+    global.noLock = true;
+
+    taps = [
+      "homebrew/cask"
+      "homebrew/cask-drivers"
+      "homebrew/cask-fonts"
+      "homebrew/cask-versions"
+      "homebrew/core"
+      "homebrew/services"
+    ];
+
+    casks = [
+      "appcleaner"
+      "bettertouchtool"
+      "crunch"
+      "cyberduck"
+      "firefox"
+      "google-chrome"
+      "gpg-suite"
+      "hiddenbar"
+      "iterm2"
+      "itsycal"
+      "jetbrains-toolbox"
+      "karabiner-elements"
+      "keybase"
+      "numi"
+      "obsidian"
+      "plex"
+      "plexamp"
+      "raycast"
+      "sequel-ace"
+      "soduto"
+      "shottr"
+      "sublime-text"
+      "the-unarchiver"
+      "visual-studio-code"
+      "zerotier-one"
+    ];
+  };
 }

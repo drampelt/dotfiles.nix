@@ -283,4 +283,5 @@
   # Misc configuration files --------------------------------------------------------------------{{{
   home.file.".ideavimrc".source = ../ideavimrc;
 
+  home.file.".config/karabiner/karabiner.json".source = config.lib.file.mkOutOfStoreSymlink "/Users/daniel/.nixpkgs/darwin/config/karabiner/karabiner.json";
 }

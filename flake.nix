@@ -42,7 +42,7 @@
     # My `nix-darwin` configs
       
     darwinConfigurations = rec {
-      mbp2019 = darwinSystem {
+      Daniels-MBP2019 = darwinSystem {
         system = "x86_64-darwin";
         modules = attrValues self.darwinModules ++ [ 
           # Main `nix-darwin` config

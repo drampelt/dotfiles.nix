@@ -12,6 +12,8 @@
     wget
 
     # Dev stuff
+    colima
+    docker-client
     difftastic
     duf
     fd

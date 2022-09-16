@@ -75,13 +75,16 @@
 
     casks = [
       "appcleaner"
+      "avidemux"
       "bettertouchtool"
       "crunch"
       "cyberduck"
+      "discord"
       "firefox"
       "google-chrome"
       "gpg-suite"
       "hiddenbar"
+      "iina"
       "iterm2"
       "itsycal"
       "jetbrains-toolbox"
@@ -93,11 +96,13 @@
       "plexamp"
       "raycast"
       "sequel-ace"
+      "slack"
       "soduto"
       "shottr"
       "sublime-text"
       "the-unarchiver"
       "visual-studio-code"
+      "xcodes"
       "zerotier-one"
     ];
   };

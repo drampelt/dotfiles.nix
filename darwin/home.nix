@@ -25,6 +25,7 @@
     jq
     ncdu
     ripgrep
+    ripgrep-all
     xh
 
     # Other

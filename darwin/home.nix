@@ -23,6 +23,7 @@
     git-crypt
     google-cloud-sdk
     jq
+    kotlin
     ncdu
     ripgrep
     ripgrep-all

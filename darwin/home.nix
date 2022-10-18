@@ -22,6 +22,7 @@
     fx
     git-crypt
     google-cloud-sdk
+    gradle
     jq
     kotlin
     ncdu

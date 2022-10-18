@@ -275,6 +275,7 @@
     test -e "''${HOME}/.iterm2_shell_integration.zsh" && source "''${HOME}/.iterm2_shell_integration.zsh"
     export ANDROID_HOME="''${HOME}/Library/Android/sdk"
     export PATH="''${ANDROID_HOME}/tools:''${ANDROID_HOME}/platform-tools:''${HOME}/bin:''${PATH}"
+    export JAVA_HOME="$(/usr/libexec/java_home)"
     setopt prompt_sp
     export EDITOR=vim
     export BAT_PAGER="less -R"

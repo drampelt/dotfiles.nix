@@ -10,6 +10,7 @@
     coreutils
     curl
     wget
+    mosh
 
     # Dev stuff
     colima
@@ -286,6 +287,7 @@
     shellAliases = {
       gdm = "git branch --merged | egrep -v '(^\\*|master|staging|main)' | xargs git branch -d";
       k = "kubectl";
+      mssh = "LANG=en_US.UTF-8 mosh --ssh=/usr/bin/ssh";
     };
   };
 

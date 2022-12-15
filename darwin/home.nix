@@ -94,6 +94,7 @@
       };
       pull = {
         rebase = true;
+        autoStash = true;
       };
       push = {
         autoSetupRemote = true;
@@ -103,6 +104,9 @@
       };
       core = {
         sshCommand = "/usr/bin/ssh";
+      };
+      rebase = {
+        updateRefs = true;
       };
       merge = {
         tool = "opendiff";

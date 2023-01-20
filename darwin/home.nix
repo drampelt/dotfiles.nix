@@ -22,7 +22,7 @@
     ffmpeg
     fx
     git-crypt
-    google-cloud-sdk
+    (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
     gradle
     jq
     kotlin

@@ -374,7 +374,7 @@
     export PATH="''${ANDROID_HOME}/tools:''${ANDROID_HOME}/platform-tools:''${HOME}/bin:''${PATH}"
     export JAVA_HOME="$(/usr/libexec/java_home)"
     setopt prompt_sp
-    export EDITOR=vim
+    export EDITOR=nvim
     export BAT_PAGER="less -R"
     ZAQ_PREFIXES=('git commit( [^ ]##)# -[^ -]#m')
     ZSH_HIGHLIGHT_HIGHLIGHTERS+=(zaq)

@@ -76,6 +76,7 @@
     casks = [
       "appcleaner"
       "avidemux"
+      "background-music"
       "bettertouchtool"
       "crunch"
       "cyberduck"
@@ -105,6 +106,10 @@
       "xcodes"
       "zerotier-one"
     ];
+
+    masApps = {
+      Bitwarden = 1352778147;
+    };
   };
 
   system.defaults = {

@@ -173,10 +173,12 @@
       " - r replaces i as the "inneR" modifier
 
       " HNEI arrows. Swap 'gn'/'ge' and 'n'/'e'.
+      " Also, m -> h for colemak-dh
 
       noremap <expr> n (v:count == 0 ? 'gj' : 'j')
       noremap <expr> e (v:count == 0 ? 'gk' : 'k')
       noremap i l
+      noremap m h
 
       noremap <C-e> <C-u>
       noremap <C-n> <C-d>
@@ -277,10 +279,12 @@
     " - r replaces i as the "inneR" modifier
 
     " HNEI arrows. Swap 'gn'/'ge' and 'n'/'e'.
+    " Also, m -> h for colemak-dh
 
     noremap <expr> n (v:count == 0 ? 'gj' : 'j')
     noremap <expr> e (v:count == 0 ? 'gk' : 'k')
     noremap i l
+    noremap m h
 
     noremap <C-e> <C-u>
     noremap <C-n> <C-d>

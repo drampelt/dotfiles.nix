@@ -8,9 +8,11 @@
 " - r replaces i as the "inneR" modifier
 
 " HNEI arrows. Swap 'gn'/'ge' and 'n'/'e'.
+" Also, m -> h for colemak-dh
 noremap n gj
 noremap e gk
 noremap i l
+noremap m h
 noremap gn j
 noremap ge k
 " Last search.

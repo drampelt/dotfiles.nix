@@ -57,6 +57,12 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
 
+  users.users.daniel = {
+    name = "daniel";
+    home = "/Users/daniel";
+  };
+
+
   homebrew = {
     enable = true;
     onActivation.autoUpdate = true;

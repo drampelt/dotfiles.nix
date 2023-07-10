@@ -352,6 +352,19 @@
     '';
   };
 
+  programs.ssh = {
+    enable = true;
+    includes = [ "config.d/*" ];
+    matchBlocks = {
+      "*" = {
+        extraOptions = {
+          UseKeychain = "yes";
+          AddKeysToAgent = "yes";
+        };
+      };
+    };
+  };
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;

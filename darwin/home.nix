@@ -17,6 +17,7 @@
     docker-client
     difftastic
     duf
+    du-dust
     fd
     fasd
     ffmpeg

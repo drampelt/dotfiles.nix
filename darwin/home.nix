@@ -53,10 +53,7 @@
     nix-direnv.enable = true;
   };
 
-  programs.exa = {
-    enable = true;
-    enableAliases = true;
-  };
+  programs.eza.enable = true;
 
   programs.fzf = {
     enable = true;
@@ -67,7 +64,7 @@
       if [[ -f {} ]]; then
            file --mime {} | grep -q \\\"text\/.*;\\\" && bat --color \\\"always\\\" {} || (tput setaf 1; file --mime {})
        elif [[ -d {} ]]; then
-           exa -l --color always {}
+           eza -l --color always {}
        else;
            tput setaf 1; echo YOU ARE NOT SUPPOSED TO SEE THIS!
        fi'"
@@ -368,7 +365,7 @@
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting = {
       enable = true;
     };

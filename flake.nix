@@ -48,6 +48,22 @@
           }
         ];
       };
+      Daniels-MBA2024 = darwinSystem {
+        system = "aarch64-darwin";
+        modules = attrValues self.darwinModules ++ [
+          # Main `nix-darwin` config
+          ./darwin/configuration.nix
+          # `home-manager` module
+          home-manager.darwinModules.home-manager
+          {
+            nixpkgs = nixpkgsConfig;
+            # `home-manager` config
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.daniel = import ./darwin/home.nix;
+          }
+        ];
+      };
     };
 
     # Overlays --------------------------------------------------------------- {{{

@@ -143,5 +143,9 @@
       Clicking = true;
       TrackpadRightClick = true;
     };
+
+    ".GlobalPreferences" = {
+      "com.apple.mouse.scaling" = 2.0;
+    };
   };
 }

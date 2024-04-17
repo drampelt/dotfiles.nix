@@ -134,6 +134,7 @@
 
   system.defaults = {
     NSGlobalDomain = {
+      ApplePressAndHoldEnabled = false;
       AppleShowAllFiles = true;
       InitialKeyRepeat = 15;
       KeyRepeat = 2;

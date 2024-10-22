@@ -34,6 +34,7 @@
     xh
 
     # Other
+    gifski
     kopia
     yt-dlp
 

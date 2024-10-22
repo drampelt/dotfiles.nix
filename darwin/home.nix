@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgs-unstable, lib, ... }:
 
 {
   home.stateVersion = "22.05";
@@ -28,7 +28,7 @@
     gradle
     jq
     kotlin
-    ncdu
+    pkgs-unstable.ncdu
     ripgrep
     ripgrep-all
     xh

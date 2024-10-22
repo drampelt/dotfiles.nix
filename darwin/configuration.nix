@@ -24,6 +24,8 @@
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
+  ids.gids.nixbld = 30000;
+
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
@@ -44,8 +46,7 @@
   environment.shells = [pkgs.zsh];
 
   # Fonts
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
      recursive
      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
    ];
@@ -159,4 +160,6 @@
       "com.apple.mouse.scaling" = 2.0;
     };
   };
+
+  system.stateVersion = 5;
 }

@@ -17,7 +17,7 @@
     
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
   let 
 
     inherit (darwin.lib) darwinSystem;
@@ -48,8 +48,14 @@
           }
         ];
       };
-      Daniels-MBA2024 = darwinSystem {
+      Daniels-MBA2024 = darwinSystem rec {
         system = "aarch64-darwin";
+        specialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
         modules = attrValues self.darwinModules ++ [
           # Main `nix-darwin` config
           ./darwin/configuration.nix
@@ -60,6 +66,7 @@
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = specialArgs;
             home-manager.users.daniel = import ./darwin/home.nix;
           }
         ];

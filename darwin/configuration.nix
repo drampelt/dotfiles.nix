@@ -91,6 +91,7 @@
       "firefox"
       "fuse-t"
       "fuse-t-sshfs"
+      "ghostty"
       "google-chrome"
       "gpg-suite"
       "heynote"

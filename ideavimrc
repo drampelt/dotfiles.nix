@@ -1,20 +1,23 @@
-""" Colemak-Vim Mappings"""
+""" Colemak-Vim Arrow keys """
 " - k/K is the new n/N.
 " - s/S is the new i/I ["inSert"].
-" - j/J is the new e/E ["Jump" to EOW].
 "
 " - l/L skip to the beginning and end of lines
 " - Ctrl-l joins lines
 " - r replaces i as the "inneR" modifier
 
-" HNEI arrows. Swap 'gn'/'ge' and 'n'/'e'.
+" UENI arrows. Swap 'gn'/'ge' and 'n'/'e'.
 " Also, m -> h for colemak-dh
-noremap n gj
-noremap e gk
+
+noremap <expr> e (v:count == 0 ? 'gj' : 'j')
+noremap <expr> u (v:count == 0 ? 'gk' : 'k')
 noremap i l
-noremap m h
-noremap gn j
-noremap ge k
+noremap n h
+
+noremap q u
+noremap Q <C-r>
+noremap <Leader>q q
+
 " Last search.
 nnoremap k n
 nnoremap K N

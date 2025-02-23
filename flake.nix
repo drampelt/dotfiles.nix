@@ -11,13 +11,15 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    #nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     # Other sources
     comma = { url = github:nix-community/comma; flake = false; };
     
   };
 
-  outputs = { self, darwin, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
   let 
 
     inherit (darwin.lib) darwinSystem;
@@ -27,8 +29,10 @@
     nixpkgsConfig = {
       config = { allowUnfree = true; };
     }; 
+    nvim = { system }: nixvim.legacyPackages."${system}".makeNixvimWithModule { module = ./vim; };
   in
   {
+    packages."aarch64-darwin".nvim = nvim { system = "aarch64-darwin"; };
     # My `nix-darwin` configs
       
     darwinConfigurations = rec {
@@ -51,10 +55,12 @@
       Daniels-MBA2024 = darwinSystem rec {
         system = "aarch64-darwin";
         specialArgs = {
+          inherit inputs;
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
           };
+          nixvim = nvim { inherit system; };
         };
         modules = attrValues self.darwinModules ++ [
           # Main `nix-darwin` config

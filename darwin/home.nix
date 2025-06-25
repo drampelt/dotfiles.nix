@@ -42,6 +42,8 @@
     # Useful nix related tools
     comma # run software from without installing it
     niv # easy dependency management for nix projects
+    nixd
+    nil
 
     # Nixvim
     nixvim

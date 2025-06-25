@@ -125,6 +125,7 @@
       "visual-studio-code"
       "xcodes"
       "zerotier-one"
+      "zed"
     ];
 
     masApps = {

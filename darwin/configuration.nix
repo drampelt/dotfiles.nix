@@ -11,7 +11,6 @@
   nix.settings.trusted-users = [
     "@admin"
   ];
-  nix.configureBuildUsers = true;
 
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
@@ -26,11 +25,10 @@
 
   ids.gids.nixbld = 30000;
 
+  system.primaryUser = "daniel";
+
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 
   # Apps
   # `home-manager` currently has issues adding them to `~/Applications`
@@ -48,7 +46,7 @@
   # Fonts
   fonts.packages = with pkgs; [
      recursive
-     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+     nerd-fonts.jetbrains-mono
    ];
 
   # Keyboard
@@ -56,7 +54,7 @@
   # system.keyboard.remapCapsLockToEscape = true;
 
   # Add ability to used TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   users.users.daniel = {
     name = "daniel";

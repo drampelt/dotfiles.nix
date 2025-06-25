@@ -298,7 +298,7 @@
         };
       }
     ];
-    initExtra = ''
+    initContent = ''
     eval "$(fasd --init auto)"
     test -e "''${HOME}/.iterm2_shell_integration.zsh" && source "''${HOME}/.iterm2_shell_integration.zsh"
     export ANDROID_HOME="''${HOME}/Library/Android/sdk"

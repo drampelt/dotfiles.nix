@@ -3,7 +3,7 @@
   plugins = {
     copilot-lua = {
       enable = true;
-      suggestion = {
+      settings.suggestion = {
         keymap = {
           next = "<S-Space>";
           #prev = "<C-[>";

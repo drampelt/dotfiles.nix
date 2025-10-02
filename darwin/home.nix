@@ -23,6 +23,7 @@
     ffmpeg
     fselect
     fx
+    gh
     git-absorb
     git-crypt
     (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
@@ -30,8 +31,10 @@
     jq
     kotlin
     pkgs-unstable.ncdu
+    nodejs_22
     ripgrep
     ripgrep-all
+    uv
     xh
 
     # Other
@@ -304,12 +307,13 @@
     eval "$(fasd --init auto)"
     test -e "''${HOME}/.iterm2_shell_integration.zsh" && source "''${HOME}/.iterm2_shell_integration.zsh"
     export ANDROID_HOME="''${HOME}/Library/Android/sdk"
-    export PATH="''${ANDROID_HOME}/tools:''${ANDROID_HOME}/platform-tools:''${HOME}/bin:''${PATH}"
+    export PATH="''${ANDROID_HOME}/tools:''${ANDROID_HOME}/platform-tools:''${HOME}/bin:''${HOME}/.local/bin:''${PATH}"
     setopt prompt_sp
     export EDITOR=nvim
     export BAT_PAGER="less -R"
     ZAQ_PREFIXES=('git commit( [^ ]##)# -[^ -]#m')
     ZSH_HIGHLIGHT_HIGHLIGHTERS+=(zaq)
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     '';
     shellAliases = {
       gdm = "git branch --merged | egrep -v '(^\\*|master|staging|main)' | xargs git branch -d";

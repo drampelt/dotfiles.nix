@@ -161,5 +161,18 @@
     };
   };
 
+  launchd.user.agents = {
+    # See https://github.com/stuartdochertymusic/KRK_stayawake
+    "krk-speaker-tone" = {
+      command = "/usr/bin/afplay -d ${./10hz_tone.wav}";
+      serviceConfig = {
+        RunAtLoad = true;
+        StartInterval = 300; # every 5 minutes
+        StandardErrorPath = "/tmp/krk-speaker-tone.err";
+        StandardOutPath = "/tmp/krk-speaker-tone.out";
+      };
+    };
+  };
+
   system.stateVersion = 5;
 }

@@ -17,7 +17,7 @@
     docker-client
     difftastic
     duf
-    du-dust
+    dust
     fd
     fasd
     ffmpeg
@@ -83,8 +83,6 @@
 
   programs.git = {
     enable = true;
-    userEmail = "drampelt@gmail.com";
-    userName = "Daniel Rampelt";
     signing.key = "C7F714686365C406";
     signing.signByDefault = true;
     # delta.enable = true;
@@ -93,7 +91,11 @@
     #   whitespace-error-style = "22 reverse";
     # };
     ignores = [ "*.swp" ".DS_Store" ".direnv" ];
-    extraConfig = {
+    settings = {
+      user = {
+        email = "drampelt@gmail.com";
+        name = "Daniel Rampelt";
+      };
       alias = {
         lg = "log --graph --date=format:\"%a %b %d, %r\" --pretty=format:\"%Cred%h%Creset - %C(yellow)%ad %Cgreen(%cr)%C(reset)%C(auto) -%d %s %Cblue<%an>%Creset\" --topo-order";
         dft = "difftool";
@@ -270,6 +272,7 @@
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     includes = [ "config.d/*" ];
     matchBlocks = {
       "*" = {
@@ -277,6 +280,7 @@
           UseKeychain = "yes";
           AddKeysToAgent = "yes";
           IdentityFile = "~/.ssh/id_ed25519";
+          ForwardAgent = "no";
         };
       };
     };

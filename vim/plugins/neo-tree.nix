@@ -3,7 +3,7 @@
   plugins.neo-tree = {
     enable = true;
 
-    window.mappings = {
+    settings.window.mappings = {
       e = "";
     };
   }; 

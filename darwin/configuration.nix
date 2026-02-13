@@ -85,6 +85,7 @@
       "crunch-app"
       "cyberduck"
       "discord"
+      "finicky"
       "firefox"
       "fuse-t"
       "fuse-t-sshfs"

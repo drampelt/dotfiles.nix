@@ -13,7 +13,7 @@
     mosh
 
     # Dev stuff
-    colima
+    pkgs-unstable.colima
     docker-client
     difftastic
     duf

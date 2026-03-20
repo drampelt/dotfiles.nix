@@ -115,7 +115,7 @@
       "prismlauncher"
       "qlmarkdown"
       "qlstephen"
-      "qlvideo"
+      "quicklook-video"
       "raycast"
       "sequel-ace"
       "slack"

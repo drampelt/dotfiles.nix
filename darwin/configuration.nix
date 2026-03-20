@@ -2,6 +2,9 @@
 {
   # Nix configuration ------------------------------------------------------------------------------
 
+  nix.enable = false;
+  determinateNix.enable = true;
+
   nix.settings.substituters = [
     "https://cache.nixos.org/"
   ];

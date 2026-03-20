@@ -13,14 +13,15 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     #nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
 
     # Other sources
     comma = { url = github:nix-community/comma; flake = false; };
-    
+
   };
 
   outputs = { self, darwin, nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
-  let 
+  let
 
     inherit (darwin.lib) darwinSystem;
     inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
@@ -28,17 +29,17 @@
     # Configuration for `nixpkgs`
     nixpkgsConfig = {
       config = { allowUnfree = true; };
-    }; 
+    };
     nvim = { system }: nixvim.legacyPackages."${system}".makeNixvimWithModule { module = ./vim; };
   in
   {
     packages."aarch64-darwin".nvim = nvim { system = "aarch64-darwin"; };
     # My `nix-darwin` configs
-      
+
     darwinConfigurations = rec {
       Daniels-MBP2019 = darwinSystem {
         system = "x86_64-darwin";
-        modules = attrValues self.darwinModules ++ [ 
+        modules = attrValues self.darwinModules ++ [
           # Main `nix-darwin` config
           ./darwin/configuration.nix
           # `home-manager` module
@@ -48,7 +49,7 @@
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.daniel = import ./darwin/home.nix;            
+            home-manager.users.daniel = import ./darwin/home.nix;
           }
         ];
       };
@@ -63,6 +64,7 @@
           nixvim = nvim { inherit system; };
         };
         modules = attrValues self.darwinModules ++ [
+          inputs.determinate.darwinModules.default
           # Main `nix-darwin` config
           ./darwin/configuration.nix
           # `home-manager` module
@@ -85,7 +87,7 @@
       # Overlays to add various packages into package set
       #  comma = final: prev: {
       #    comma = import inputs.comma { inherit (prev) pkgs; };
-      #  };  
+      #  };
 
       # Overlay useful on Macs with Apple Silicon
         apple-silicon = final: prev: optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
@@ -94,13 +96,13 @@
             system = "x86_64-darwin";
             inherit (nixpkgsConfig) config;
           };
-        }; 
+        };
       };
 
     # My `nix-darwin` modules that are pending upstream, or patched versions waiting on upstream
     # fixes.
     darwinModules = {
-      programs-nix-index = 
+      programs-nix-index =
         # Additional configuration for `nix-index` to enable `command-not-found` functionality with Fish.
         { config, lib, pkgs, ... }:
 

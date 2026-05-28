@@ -76,6 +76,7 @@
       "homebrew/cask-versions"
       "homebrew/services"
       "macos-fuse-t/homebrew-cask"
+      "jurplel/tap" # instant-space-switcher
     ];
 
     casks = [
@@ -98,6 +99,7 @@
       "heynote"
       "hiddenbar"
       "iina"
+      "instant-space-switcher"
       "iterm2"
       "itsycal"
       "jetbrains-toolbox"

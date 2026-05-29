@@ -156,25 +156,126 @@
 
   system.defaults = {
     NSGlobalDomain = {
+      AppleInterfaceStyle = "Dark";
       ApplePressAndHoldEnabled = false;
       AppleShowAllFiles = true;
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
+      NSStatusItemSelectionPadding = 4;
+      NSStatusItemSpacing = 4;
+      "com.apple.keyboard.fnState" = true;
+      "com.apple.trackpad.scaling" = 1.5;
     };
 
     dock = {
       autohide = true;
       mru-spaces = false;
+      persistent-apps = [
+        "/Applications/Firefox.app"
+        "/Applications/Google Chrome.app"
+        "/Applications/Ghostty.app"
+        "/Applications/Zed.app"
+        "/Applications/Codex.app"
+        "/Applications/Discord.app"
+        "/Applications/WhatsApp.app"
+        "/Applications/Numi.app"
+        "/System/Applications/Music.app"
+        "/Applications/Plexamp.app"
+      ];
       show-recents = false;
+      tilesize = 64;
+      wvous-br-corner = 1;
     };
 
-    finder.AppleShowAllFiles = true;
+    finder = {
+      AppleShowAllFiles = true;
+      FXPreferredViewStyle = "Nlsv";
+      ShowExternalHardDrivesOnDesktop = false;
+      ShowHardDrivesOnDesktop = false;
+      ShowRemovableMediaOnDesktop = false;
+    };
 
-    screencapture.location = "/Users/daniel/Pictures/Screenshots";
+    screencapture = {
+      location = "/Users/daniel/Pictures/Screenshots";
+    };
 
     trackpad = {
       Clicking = true;
       TrackpadRightClick = true;
+    };
+
+    controlcenter = {
+      Bluetooth = false;
+      Display = false;
+      FocusModes = false;
+      NowPlaying = true;
+      Sound = true;
+    };
+
+    hitoolbox.AppleFnUsageType = "Do Nothing";
+
+    CustomUserPreferences = {
+      NSGlobalDomain = {
+        AppleLanguages = [ "en-CA" ];
+        AppleLocale = "en_CA";
+      };
+
+      "com.apple.dock" = {
+        "persistent-others" = [
+          {
+            "tile-data" = {
+              arrangement = 2;
+              displayas = 1;
+              "file-data" = {
+                "_CFURLString" = "file:///Users/daniel/Downloads/";
+                "_CFURLStringType" = 15;
+              };
+              "file-label" = "Downloads";
+              preferreditemsize = -1;
+              showas = 2;
+            };
+            "tile-type" = "directory-tile";
+          }
+          {
+            "tile-data" = {
+              arrangement = 1;
+              displayas = 1;
+              "file-data" = {
+                "_CFURLString" = "file:///Applications/";
+                "_CFURLStringType" = 15;
+              };
+              "file-label" = "Applications";
+              preferreditemsize = -1;
+              showas = 0;
+            };
+            "tile-type" = "directory-tile";
+          }
+        ];
+        "wvous-br-modifier" = 0;
+      };
+
+      "com.apple.HIToolbox" = {
+        AppleCurrentKeyboardLayoutInputSourceID = "com.apple.keylayout.Canadian";
+        AppleEnabledInputSources = [
+          {
+            InputSourceKind = "Keyboard Layout";
+            "KeyboardLayout ID" = 29;
+            "KeyboardLayout Name" = "Canadian";
+          }
+          {
+            InputSourceKind = "Keyboard Layout";
+            "KeyboardLayout ID" = 12825;
+            "KeyboardLayout Name" = "Colemak";
+          }
+        ];
+        AppleSelectedInputSources = [
+          {
+            InputSourceKind = "Keyboard Layout";
+            "KeyboardLayout ID" = 29;
+            "KeyboardLayout Name" = "Canadian";
+          }
+        ];
+      };
     };
 
     ".GlobalPreferences" = {

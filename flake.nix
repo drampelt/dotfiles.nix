@@ -37,22 +37,6 @@
     # My `nix-darwin` configs
 
     darwinConfigurations = rec {
-      Daniels-MBP2019 = darwinSystem {
-        system = "x86_64-darwin";
-        modules = attrValues self.darwinModules ++ [
-          # Main `nix-darwin` config
-          ./darwin/configuration.nix
-          # `home-manager` module
-          home-manager.darwinModules.home-manager
-          {
-            nixpkgs = nixpkgsConfig;
-            # `home-manager` config
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.daniel = import ./darwin/home.nix;
-          }
-        ];
-      };
       Daniels-MBA2024 = darwinSystem rec {
         system = "aarch64-darwin";
         specialArgs = {

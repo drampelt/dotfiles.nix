@@ -163,6 +163,15 @@
                     },
                     "ignore": false,
                     "mouse_flip_vertical_wheel": true
+                },
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 49290,
+                        "vendor_id": 1133
+                    },
+                    "ignore": false,
+                    "mouse_flip_vertical_wheel": true
                 }
             ],
             "name": "Default profile",

@@ -140,6 +140,7 @@
   programs.htop.enable = true;
   programs.java.enable = true;
   programs.jq.enable = true;
+  programs.mergiraf.enable = true;
 
   programs.starship.enable = true;
   #programs.starship.package = starshipWorkingPkgs.pkgs.starship;

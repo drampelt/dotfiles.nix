@@ -155,7 +155,10 @@
   programs.htop.enable = true;
   programs.java.enable = true;
   programs.jq.enable = true;
-  programs.mergiraf.enable = true;
+  programs.mergiraf = {
+    enable = true;
+    enableGitIntegration = true;
+  };
 
   programs.starship.enable = true;
   #programs.starship.package = starshipWorkingPkgs.pkgs.starship;
@@ -290,14 +293,12 @@
     enable = true;
     enableDefaultConfig = false;
     includes = [ "config.d/*" ];
-    matchBlocks = {
+    settings = {
       "*" = {
-        extraOptions = {
-          UseKeychain = "yes";
-          AddKeysToAgent = "yes";
-          IdentityFile = "~/.ssh/id_ed25519";
-          ForwardAgent = "no";
-        };
+        UseKeychain = "yes";
+        AddKeysToAgent = "yes";
+        IdentityFile = "~/.ssh/id_ed25519";
+        ForwardAgent = "no";
       };
     };
   };

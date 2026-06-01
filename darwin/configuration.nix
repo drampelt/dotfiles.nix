@@ -72,9 +72,6 @@
     global.brewfile = true;
 
     taps = [
-      "homebrew/cask-fonts"
-      "homebrew/cask-versions"
-      "homebrew/services"
       "macos-fuse-t/homebrew-cask"
       "jurplel/tap" # instant-space-switcher
     ];
@@ -133,7 +130,7 @@
       "raycast"
       "sequel-ace"
       "slack"
-      "soduto"
+      # "soduto" # current homebrew version is outdated, use fork https://github.com/sannidhyaroy/Soduto
       "shottr"
       "steam"
       "sublime-text"

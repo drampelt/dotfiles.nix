@@ -81,6 +81,16 @@
     ];
   };
 
+  programs.ghostty = {
+    enable = true;
+    package = null;
+    settings = {
+      theme = "nord";
+      window-save-state = "always";
+      keybind = "shift+enter=text:\\n";
+    };
+  };
+
   programs.git = {
     enable = true;
     signing.key = "C7F714686365C406";

@@ -199,6 +199,12 @@
       location = "/Users/daniel/Pictures/Screenshots";
     };
 
+    menuExtraClock = {
+      ShowDate = 2;
+      ShowDayOfWeek = false;
+      ShowSeconds = true;
+    };
+
     trackpad = {
       Clicking = true;
       TrackpadRightClick = true;
@@ -209,7 +215,7 @@
       Display = false;
       FocusModes = false;
       NowPlaying = true;
-      Sound = true;
+      Sound = false;
     };
 
     hitoolbox.AppleFnUsageType = "Do Nothing";
@@ -219,6 +225,8 @@
         AppleLanguages = [ "en-CA" ];
         AppleLocale = "en_CA";
       };
+
+      "com.apple.controlcenter"."NSStatusItem Visible WiFi" = 0;
 
       "com.apple.dock" = {
         "persistent-others" = [

@@ -5,6 +5,11 @@
 
   # https://github.com/malob/nixpkgs/blob/master/home/default.nix
 
+  targets.darwin.currentHostDefaults = {
+    "com.apple.controlcenter".WiFi = 8;
+    "com.apple.Spotlight".MenuItemHidden = 1;
+  };
+
   home.packages = with pkgs; [
     # Some basics
     coreutils

@@ -1,5 +1,14 @@
 { config, pkgs, pkgs-unstable, nixvim, lib, inputs, ... }:
 
+let
+  firefoxCssHacks = pkgs.fetchFromGitHub {
+    owner = "drampelt";
+    repo = "firefox-csshacks";
+    rev = "33b67df6e3ac68db2839c17297d8c9e2a8e4ee8d";
+    hash = "sha256-6y8HRTQ4X8QObFiEmwCekfasyPdE/RWcMxjM2HkmXJA=";
+  };
+  firefoxProfilePath = "Profiles/default-release";
+in
 {
   home.stateVersion = "22.05";
 
@@ -84,6 +93,20 @@
            tput setaf 1; echo YOU ARE NOT SUPPOSED TO SEE THIS!
        fi'"
     ];
+  };
+
+  programs.firefox = {
+    enable = true;
+    package = null;
+    profileVersion = 2;
+    profiles.default-release = {
+      id = 0;
+      name = "default-release";
+      isDefault = true;
+      settings = {
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      };
+    };
   };
 
   programs.ghostty = {
@@ -346,6 +369,39 @@
   # Misc configuration files --------------------------------------------------------------------{{{
   home.file.".ideavimrc".source = ../ideavimrc;
   home.file.".finicky.js".source = ./finicky.js;
+  home.file."Library/Application Support/Firefox/profiles.ini".force = true;
+  home.file."Library/Application Support/Firefox/${firefoxProfilePath}/chrome".source = firefoxCssHacks;
+  home.activation.firefoxDarwinInstallPins = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    firefoxConfig="$HOME/Library/Application Support/Firefox"
+    profilesIni="$firefoxConfig/profiles.ini"
+    installsIni="$firefoxConfig/installs.ini"
+    profilePath="${firefoxProfilePath}"
+
+    if [[ -f "$installsIni" ]]; then
+      installIds="$(sed -n 's/^\[\([^]]*\)\]$/\1/p' "$installsIni" | awk 'NF && !seen[$0]++')"
+
+      tmpProfiles="$(mktemp)"
+      sed '/^\[Install[^]]*\]$/,$d' "$profilesIni" > "$tmpProfiles"
+      for installId in $installIds; do
+        {
+          printf '\n[Install%s]\n' "$installId"
+          printf 'Default=%s\n' "$profilePath"
+          printf 'Locked=1\n'
+        } >> "$tmpProfiles"
+      done
+      mv "$tmpProfiles" "$profilesIni"
+
+      tmpInstalls="$(mktemp)"
+      for installId in $installIds; do
+        {
+          printf '[%s]\n' "$installId"
+          printf 'Default=%s\n' "$profilePath"
+          printf 'Locked=1\n\n'
+        } >> "$tmpInstalls"
+      done
+      mv "$tmpInstalls" "$installsIni"
+    fi
+  '';
 
   home.file.".config/karabiner/karabiner.json".source = config.lib.file.mkOutOfStoreSymlink "/Users/daniel/.nixpkgs/darwin/config/karabiner/karabiner.json";
 }

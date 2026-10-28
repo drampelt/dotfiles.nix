@@ -369,6 +369,14 @@ in
   # Misc configuration files --------------------------------------------------------------------{{{
   home.file.".ideavimrc".source = ../ideavimrc;
   home.file.".finicky.js".source = ./finicky.js;
+  home.file.".config/zed/settings.json" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/Users/daniel/.nixpkgs/darwin/config/zed/settings.json";
+    force = true;
+  };
+  home.file.".config/zed/keymap.json" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/Users/daniel/.nixpkgs/darwin/config/zed/keymap.json";
+    force = true;
+  };
   home.file."Library/Application Support/Firefox/profiles.ini".force = true;
   home.file."Library/Application Support/Firefox/${firefoxProfilePath}/chrome".source = firefoxCssHacks;
   home.activation.firefoxDarwinInstallPins = lib.hm.dag.entryAfter [ "linkGeneration" ] ''

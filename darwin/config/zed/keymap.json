@@ -1,0 +1,74 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    },
+  },
+  {
+    "context": "VimControl && !menu && vim_operator != helix_m",
+    "bindings": {
+      "o": ["vim::PushObject", { "around": false }],
+      "n": "vim::Left",
+      "e": "vim::Down",
+      "u": "vim::Up",
+      "i": "vim::Right",
+      "q": "vim::Undo",
+      "shift-q": "vim::Redo",
+      "k": "vim::MoveToNextMatch",
+      "shift-k": "vim::MoveToPreviousMatch",
+      "l": "vim::FirstNonWhitespace",
+      "shift-l": "vim::EndOfLine",
+      "space": "vim::InsertBefore",
+      "shift-space": "vim::InsertFirstNonWhitespace",
+      // ";": "command_palette::Toggle",
+      "enter": "vim::InsertEmptyLineBelow",
+      "j": "vim::NextWordEnd",
+      "shift-j": ["vim::NextWordEnd", { "ignore_punctuation": true }],
+      "shift-e": "vim::JoinLines",
+    },
+  },
+  {
+    // "context": "vim_mode == normal",
+    "context": "vim_mode == normal || vim_mode == helix_normal",
+    "bindings": {
+      "o": "vim::InsertLineBelow",
+      // "s": vim::PushSneak",
+      // "shift-s": "vim::PushSneakBackward",
+      "&": "editor::AlignSelections",
+      ".": "vim::Repeat",
+    },
+  },
+  {
+    // "context": "vim_mode == normal",
+    "context": "buffer_search_deployed",
+    "bindings": {
+      "alt-escape": "buffer_search::Dismiss",
+    },
+  },
+  {
+    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+    "bindings": {
+      // Traditional Vim behavior
+      "q": "vim::AnyQuotes",
+      "b": "vim::AnyBrackets",
+
+      // mini.ai plugin behavior
+      "Q": "vim::MiniQuotes",
+      "B": "vim::MiniBrackets",
+    },
+  },
+]

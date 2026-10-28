@@ -1,0 +1,115 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "helix_mode": true,
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+  },
+  "inlay_hints": {
+    "enabled": false,
+  },
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "semantic_tokens": "combined",
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+  "which_key": {
+    "delay_ms": 250,
+    "enabled": true,
+  },
+  "languages": {
+    "Nix": {
+      "format_on_save": "off",
+    },
+  },
+  "autosave": "on_focus_change",
+  "colorize_brackets": true,
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "wrap_guides": [120],
+  "show_edit_predictions": true,
+  "agent": {
+    "dock": "right",
+    "tool_permissions": {
+      "default": "allow",
+    },
+    "default_profile": "write",
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini",
+    },
+    "model_parameters": [],
+    "default_model": {
+      "effort": "high",
+      "provider": "copilot_chat",
+      "model": "gpt-5.4",
+    },
+  },
+  "base_keymap": "JetBrains",
+  "vim_mode": false,
+  "ui_font_size": 15,
+  "buffer_font_size": 13.0,
+  // "ui_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "minimap": { "show": "always" },
+  "max_tabs": 20,
+  "indent_guides": {
+    "background_coloring": "disabled",
+    "coloring": "indent_aware",
+    "line_width": 1,
+    "active_line_width": 2,
+  },
+  "file_types": {
+    "JSONC": [
+      "**/.zed/**/*.json",
+      "**/zed/**/*.json",
+      "**/Zed/**/*.json",
+      "**/.vscode/**/*.json",
+      "**/tsconfig*.json",
+      "**/.prettierrc",
+    ],
+  },
+  "lsp": {
+    "json-language-server": {
+      "settings": {
+        "json": {
+          "schemas": [
+            {
+              "fileMatch": ["*/tsconfig.*.json"],
+              "url": "https://json.schemastore.org/tsconfig.json",
+            },
+            {
+              "fileMatch": ["*/.prettierrc"],
+              "url": "https://json.schemastore.org/prettierrc.json",
+            },
+          ],
+        },
+      },
+    },
+  },
+}

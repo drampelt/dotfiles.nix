@@ -68,7 +68,7 @@
     enable = true;
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
-    onActivation.cleanup = "zap";
+    onActivation.cleanup = "uninstall";
     global.brewfile = true;
 
     taps = [

@@ -214,7 +214,7 @@
       Display = false;
       FocusModes = false;
       NowPlaying = true;
-      Sound = false;
+      Sound = true;
     };
 
     hitoolbox.AppleFnUsageType = "Do Nothing";

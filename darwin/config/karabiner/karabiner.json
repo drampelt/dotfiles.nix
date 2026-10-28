@@ -5,27 +5,155 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Change Command+Tab to Control+Tab",
+                        "description": "Modified mouse buttons",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": ["command", "shift"],
+                                        "optional": ["any"]
+                                    },
+                                    "pointing_button": "button3"
+                                },
+                                "to": [{ "consumer_key_code": "play_or_pause" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["any"]
+                                    },
+                                    "pointing_button": "button4"
+                                },
+                                "to": [{ "consumer_key_code": "volume_decrement" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["any"]
+                                    },
+                                    "pointing_button": "button5"
+                                },
+                                "to": [{ "consumer_key_code": "volume_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": ["control"],
+                                        "optional": ["any"]
+                                    },
+                                    "pointing_button": "button4"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["control", "option", "command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": ["control"],
+                                        "optional": ["any"]
+                                    },
+                                    "pointing_button": "button5"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["control", "option", "command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": ["control"],
+                                        "optional": ["any"]
+                                    },
+                                    "pointing_button": "button3"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Mouse side buttons in Zed",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "product_id": 130,
-                                                "vendor_id": 12136
-                                            }
-                                        ],
-                                        "type": "device_if"
+                                        "bundle_identifiers": ["^dev\\.zed\\.Zed$"],
+                                        "type": "frontmost_application_if"
                                     }
                                 ],
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["any"]
+                                "from": { "pointing_button": "button4" },
+                                "to": [
+                                    {
+                                        "key_code": "open_bracket",
+                                        "modifiers": ["command"]
                                     }
-                                },
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^dev\\.zed\\.Zed$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "pointing_button": "button5" },
+                                "to": [
+                                    {
+                                        "key_code": "close_bracket",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Mouse side buttons in Ghostty",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "pointing_button": "button4" },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["control", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "pointing_button": "button5" },
                                 "to": [
                                     {
                                         "key_code": "tab",
@@ -37,62 +165,41 @@
                         ]
                     },
                     {
-                        "description": "Change Control+Tab to Command+Tab",
+                        "description": "Global mouse side buttons",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "product_id": 130,
-                                                "vendor_id": 12136
-                                            }
+                                        "bundle_identifiers": [
+                                            "^dev\\.zed\\.Zed$",
+                                            "^com\\.mitchellh\\.ghostty$"
                                         ],
-                                        "type": "device_if"
+                                        "type": "frontmost_application_unless"
                                     }
                                 ],
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": {
-                                        "mandatory": ["control"],
-                                        "optional": ["any"]
-                                    }
-                                },
+                                "from": { "pointing_button": "button4" },
                                 "to": [
                                     {
-                                        "key_code": "tab",
+                                        "key_code": "open_bracket",
                                         "modifiers": ["command"]
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Change Control+` to Command+`",
-                        "manipulators": [
+                            },
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [
-                                            {
-                                                "product_id": 130,
-                                                "vendor_id": 12136
-                                            }
+                                        "bundle_identifiers": [
+                                            "^dev\\.zed\\.Zed$",
+                                            "^com\\.mitchellh\\.ghostty$"
                                         ],
-                                        "type": "device_if"
+                                        "type": "frontmost_application_unless"
                                     }
                                 ],
-                                "from": {
-                                    "key_code": "grave_accent_and_tilde",
-                                    "modifiers": {
-                                        "mandatory": ["control"],
-                                        "optional": ["any"]
-                                    }
-                                },
+                                "from": { "pointing_button": "button5" },
                                 "to": [
                                     {
-                                        "key_code": "grave_accent_and_tilde",
+                                        "key_code": "close_bracket",
                                         "modifiers": ["command"]
                                     }
                                 ],
@@ -103,58 +210,6 @@
                 ]
             },
             "devices": [
-                {
-                    "fn_function_keys": [
-                        {
-                            "from": { "key_code": "f1" },
-                            "to": [{ "consumer_key_code": "play_or_pause" }]
-                        },
-                        {
-                            "from": { "key_code": "f2" },
-                            "to": [{ "consumer_key_code": "play_or_pause" }]
-                        },
-                        {
-                            "from": { "key_code": "f3" },
-                            "to": [{ "consumer_key_code": "rewind" }]
-                        },
-                        {
-                            "from": { "key_code": "f4" },
-                            "to": [{ "consumer_key_code": "fastforward" }]
-                        },
-                        {
-                            "from": { "key_code": "f5" },
-                            "to": [{ "consumer_key_code": "mute" }]
-                        },
-                        {
-                            "from": { "key_code": "f6" },
-                            "to": [{ "consumer_key_code": "volume_decrement" }]
-                        },
-                        {
-                            "from": { "key_code": "f7" },
-                            "to": [{ "consumer_key_code": "volume_increment" }]
-                        }
-                    ],
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 130,
-                        "vendor_id": 12136
-                    },
-                    "manipulate_caps_lock_led": false,
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
-                        },
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_control" }]
-                        }
-                    ]
-                },
                 {
                     "identifiers": {
                         "is_pointing_device": true,
@@ -172,6 +227,15 @@
                     },
                     "ignore": false,
                     "mouse_flip_vertical_wheel": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 10203,
+                        "vendor_id": 5824
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",

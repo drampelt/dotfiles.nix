@@ -411,5 +411,8 @@ in
     fi
   '';
 
-  home.file.".config/karabiner/karabiner.json".source = config.lib.file.mkOutOfStoreSymlink "/Users/daniel/.nixpkgs/darwin/config/karabiner/karabiner.json";
+  home.file.".config/karabiner" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/Users/daniel/.nixpkgs/darwin/config/karabiner";
+    force = true;
+  };
 }
